@@ -62,6 +62,24 @@ def test_elevation_pos_4(client):
     assert loads(response.json['wkt']) == loads('POINT(56 161 286)')
 
 
+def test_elevation_not_in_borders(client):
+    response = client.get('/elevation', query_string={
+        'wkt': 'POINT(50 100)'
+    })
+    print(response.json)
+    assert response.status_code == 200
+    assert loads(response.json['wkt']) == loads('POINT(50 100 -32768)')
+
+
+def test_elevation_near_the_borders(client):
+    response = client.get('/elevation', query_string={
+        'wkt': 'POINT(54.999 159.999)'
+    })
+    print(response.json)
+    assert response.status_code == 200
+    assert loads(response.json['wkt']) == loads('POINT(54.999 159.999 -32768)')
+
+
 # -----------------------------------------------------------------------------
 
 def test_elevation_neg_missing_wkt(client):
@@ -86,3 +104,8 @@ def test_elevation_neg_incorrect_wkt(client):
 def test_elevation_post_not_allowed(client):
     response = client.post('/elevation')
     assert response.status_code == 405
+
+
+def test_not_found(client):
+    response = client.get('/not_found', query_string={})
+    assert response.status_code == 404
