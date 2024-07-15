@@ -1,0 +1,40 @@
+#toolbar {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  z-index: 1;
+  margin: 12px 0;
+}
+
+#toolbar label {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  border-radius: 8px;
+  border: 1px solid #f9f9f9;
+  outline: none;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+#toolbar select,
+#toolbar button {
+  border: none;
+  outline: 1px solid #f9f9f9;
+}
+
+#toolbar span {
+  margin: 0 0.5rem;
+}
+
+#toolbar .highlight {
+  background-color: #646cff;
+}
