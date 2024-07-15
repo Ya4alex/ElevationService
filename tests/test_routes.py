@@ -28,56 +28,56 @@ def runner(app):
 
 def test_elevation_pos_1(client):
     response = client.get('/elevation', query_string={
-        'wkt': 'POINT(55 160)'
+        'wkt': 'POINT(160 55)'
     })
     print(response.json)
     assert response.status_code == 200
-    assert loads(response.json['wkt']) == loads('POINT(55 160 770)')
+    assert loads(response.json['wkt']) == loads('POINT(160 55 770)')
 
 
 def test_elevation_pos_2(client):
     response = client.get('/elevation', query_string={
-        'wkt': 'POINT(56 160)'
+        'wkt': 'POINT(160 56)'
     })
     print(response.json)
     assert response.status_code == 200
-    assert loads(response.json['wkt']) == loads('POINT(56 160 184)')
+    assert loads(response.json['wkt']) == loads('POINT(160 56 184)')
 
 
 def test_elevation_pos_3(client):
     response = client.get('/elevation', query_string={
-        'wkt': 'POINT(55 161)'
+        'wkt': 'POINT(161 55)'
     })
     print(response.json)
     assert response.status_code == 200
-    assert loads(response.json['wkt']) == loads('POINT(55 161 1219)')
+    assert loads(response.json['wkt']) == loads('POINT(161 55 1219)')
 
 
 def test_elevation_pos_4(client):
     response = client.get('/elevation', query_string={
-        'wkt': 'POINT(56 161)'
+        'wkt': 'POINT(161 56)'
     })
     print(response.json)
     assert response.status_code == 200
-    assert loads(response.json['wkt']) == loads('POINT(56 161 286)')
+    assert loads(response.json['wkt']) == loads('POINT(161 56 286)')
 
 
 def test_elevation_not_in_borders(client):
     response = client.get('/elevation', query_string={
-        'wkt': 'POINT(50 100)'
+        'wkt': 'POINT(100 50)'
     })
     print(response.json)
     assert response.status_code == 200
-    assert loads(response.json['wkt']) == loads('POINT(50 100 -32768)')
+    assert loads(response.json['wkt']) == loads('POINT(100 50 -32768)')
 
 
 def test_elevation_near_the_borders(client):
     response = client.get('/elevation', query_string={
-        'wkt': 'POINT(54.999 159.999)'
+        'wkt': 'POINT(159.999 54.999)'
     })
     print(response.json)
     assert response.status_code == 200
-    assert loads(response.json['wkt']) == loads('POINT(54.999 159.999 -32768)')
+    assert loads(response.json['wkt']) == loads('POINT(159.999 54.999 -32768)')
 
 
 # -----------------------------------------------------------------------------

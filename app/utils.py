@@ -45,7 +45,7 @@ def get_elevation_data(wkt_geometry, elevation_file):
     src: DatasetReader
     with rasterio.open(elevation_file, 'r') as src:
         def extropolate(x, y):
-            return tuple(src.sample([(y, x)]))[0][0]
+            return tuple(src.sample([(x, y)]))[0][0]
 
         geom = add_z_coordinate(geom, extropolate)
 
