@@ -115,3 +115,7 @@ def test_elevation_post_not_allowed(client):
 def test_not_found(client):
     response = client.get('/not_found', query_string={})
     assert response.status_code == 404
+
+
+def test_job(client):
+    assert 1 == 0
