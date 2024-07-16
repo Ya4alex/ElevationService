@@ -26,6 +26,12 @@ def runner(app):
     return app.test_cli_runner()
 
 
+def test_index(client):
+    response = client.get('/')
+    print(response.text)
+    assert response.status_code == 200
+
+
 def test_elevation_pos_1(client):
     response = client.get('/elevation', query_string={
         'wkt': 'POINT(160 55)'
