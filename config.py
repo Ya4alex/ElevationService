@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
-ENV_FILE = '.test_env'
+ENV_FILE = '.env'
 
 load_dotenv(os.path.join(APP_DIR, ENV_FILE))
 
@@ -12,9 +12,15 @@ class BaseConfig:
     if not SECRET_KEY:
         raise ValueError
 
-    PORT = 5050
-    HOST = 'localhost'
+    HOST = os.environ.get('HOST')
+    PORT = os.environ.get('PORT')
     DEBUG = False
+    TESTING = False
+
+    APP_DIR = APP_DIR
+
+    STATIC_URL = ''
+    STATIC_DIR = os.path.join(APP_DIR, './frontend/dist')
 
     API_ELEVATION_TIF_PATH = os.path.join(APP_DIR, './app/data/srtm_N55E160.tif')
 
@@ -32,4 +38,4 @@ class ProdConfig(BaseConfig):
     DEBUG = False
 
 
-config = DevelopConfig
+config = ProdConfig
