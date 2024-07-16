@@ -38,6 +38,8 @@
 - Настроить `.env` файл:
   ```dotenv
   SECRET_KEY="123145532"
+  HOST="localhost"
+  PORT=5050
   ```
 - в `./config.py` указать ваш `ENV_FILE` и убедится, что `config = ProdConfig`
 
